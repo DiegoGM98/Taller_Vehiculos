@@ -46,8 +46,41 @@ public class TiendaDeVehiculos {
     }
 
     // Método para eliminar un cliente
-    public void eliminarCliente(Cliente cliente) {
-        this.clientes.remove(cliente);
+    public void eliminarCliente(String nombre) {
+        Cliente clienteAEliminar = null;
+        for (Cliente cliente : this.clientes) {
+            if (cliente.getNombre().equals(nombre)) {
+                clienteAEliminar = cliente;
+                break;
+            }
+        }
+        if (clienteAEliminar != null) {
+            this.clientes.remove(clienteAEliminar);
+        }
+    }
+
+    // Método para buscar un cliente por su nombre
+    public Cliente buscarCliente(String nombre) {
+        for (Cliente cliente : this.clientes) {
+            if (cliente.getNombre().equals(nombre)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    // Método para mostrar los clientes
+    public String mostrarClientes() {
+        StringBuilder clientesStr = new StringBuilder();
+        if (clientes.isEmpty()) {
+            clientesStr.append("No hay clientes registrados en la tienda.");
+        } else {
+            clientesStr.append("Clientes registrados en la tienda:\n");
+            for (Cliente cliente : clientes) {
+                clientesStr.append(cliente.getNombre()).append("\n");
+            }
+        }
+        return clientesStr.toString();
     }
 
     // Método para realizar una venta
@@ -57,3 +90,7 @@ public class TiendaDeVehiculos {
         }
     }
 }
+
+
+
+
